@@ -72,6 +72,10 @@ button {
     height: 30px;
     background-color: rgb(0, 84, 167);
 }
+#resetButton {
+    background-color: red;
+    margin-top: 10px;
+}
 
 /*non standard css*/
 ::-webkit-scrollbar {

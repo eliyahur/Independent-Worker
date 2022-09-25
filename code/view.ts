@@ -20,4 +20,14 @@ export class RenderSelect {
             Project.getProjectOptions().displaySessions();
         }
     }
+    public static resetButton() {
+        let resetButton = document.getElementById('resetButton');
+        resetButton.addEventListener('click',()=>{
+            localStorage.setItem('projectsCollection', null);
+            AppState.getAppState().setProject({projectId: 0, projectName: '', workSessions: []});
+            ProjectsCollection.getProjects().projectsCollection = [];
+            Project.getProjectOptions().displaySessions();
+            this.initOptions();
+        });
+    }
 }
