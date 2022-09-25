@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <title>Independent Worker</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <script type="module" src="compiledJS/code/script.js"></script>
+    <script type="module" src="appControl.js"></script>
+</head>
+<body>
+    <div class="appBody">
+        <div class="toolbar">
+            <button id="close">x</button>
+            <button id="minimize">-</button>
+        </div>
+        <h1>Indepedent Worker</h1>
+        <div class="projectSelection">
+            <select id="selectProject"></select>
+            <button id="sessionBtn">Start Session</button>
+        </div>
+        <div class="newProjectSection">
+            <input type="text" id="newProject" placeholder="Enter New Project Name" />
+            <button id="addNewProject">Add New Project</button>
+        </div>
+        <div id="displaySessions"></div>
+    </div>
+</body>
+</html>

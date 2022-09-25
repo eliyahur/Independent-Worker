@@ -1,0 +1,94 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    background-color: rgb(216, 245, 255);
+}
+h1 {
+    font-size: 14pt;
+    color: rgb(0, 105, 191);
+}
+.appBody {
+    width: 500px;
+    margin: 0px auto;
+}
+input[type=text], select {
+    border: 0;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 0 10px 0;
+}
+input[type=text] {
+    width: 480px;
+}
+select {
+    width: 500px;
+}
+button {
+    border: 0;
+    width: 200px;
+    height: 50px;
+    background-color: rgb(0, 84, 167);
+    color: white;
+}
+.sessionOn {
+    background-color: green;
+}
+.displaySessions {
+    width: 100%;
+}
+    .sessionsDiv {
+        width: 100%;
+        margin: 10px 0 10px 0;
+        height: 200px;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+        .singleSession {
+            margin: 10px 0 10px 0;
+            padding: 10px;
+            background-color: rgb(188, 227, 255);
+        }
+        .singleSession:first-child {
+            margin: 0 0 10px 0;
+        }
+        .singleSession:last-child {
+            margin: 10px 0 0 0;
+        }
+    .totalTime {
+        margin: 10px 0 10px 0;
+        padding: 10px;
+        color: white;
+        font-weight: bold;
+        background-color: rgb(7, 77, 128);
+    }
+#close {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+}
+#minimize {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(0, 84, 167);
+}
+
+/*non standard css*/
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(51, 125, 168);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(23, 89, 159);
+  }
