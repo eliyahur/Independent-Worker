@@ -21,6 +21,17 @@ var RenderSelect = /** @class */ (function () {
             Project.getProjectOptions().displaySessions();
         }
     };
+    RenderSelect.resetButton = function () {
+        var _this = this;
+        var resetButton = document.getElementById('resetButton');
+        resetButton.addEventListener('click', function () {
+            localStorage.setItem('projectsCollection', null);
+            AppState.getAppState().setProject({ projectId: 0, projectName: '', workSessions: [] });
+            ProjectsCollection.getProjects().projectsCollection = [];
+            Project.getProjectOptions().displaySessions();
+            _this.initOptions();
+        });
+    };
     return RenderSelect;
 }());
 export { RenderSelect };
