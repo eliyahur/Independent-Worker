@@ -7,7 +7,6 @@ var RenderSelect = /** @class */ (function () {
     RenderSelect.initOptions = function () {
         var selectBtn = document.getElementById('selectProject');
         selectBtn.innerHTML = null;
-        console.log(ProjectsCollection.getProjects().getProjectsCollection());
         ProjectsCollection.getProjects().getProjectsCollection().forEach(function (project) {
             var option = document.createElement('option');
             var optionText = document.createTextNode(project.projectName);

@@ -14,12 +14,9 @@ var Project = /** @class */ (function () {
         return Project.projectOptions;
     };
     Project.prototype.setWorkSession = function (sessionData) {
-        console.log(AppState.getAppState().getProject());
         AppState.getAppState().getProject().workSessions.push(sessionData);
         ProjectsCollection.getProjects().saveProjects(AppState.getAppState().getProject());
-        console.log('wwww');
         this.displaySessions();
-        console.log('aaaa');
     };
     Project.prototype.initEventListenersForProject = function () {
         var _this = this;
@@ -27,7 +24,6 @@ var Project = /** @class */ (function () {
         var newProjectName = document.getElementById('newProject');
         if (!this.eventListenerSet) {
             newProjectBtn.addEventListener('click', function () {
-                console.log('Button clicked to add new project: ' + newProjectName.value);
                 _this.addNewProject(newProjectName.value);
             });
             var options_1 = document.getElementById("selectProject");
@@ -50,7 +46,6 @@ var Project = /** @class */ (function () {
         AppState.getAppState().setProject(newProjectData);
         ProjectsCollection.getProjects().saveProjects(AppState.getAppState().getProject());
         RenderSelect.initOptions();
-        console.log(ProjectsCollection.getProjects());
     };
     Project.prototype.displaySessions = function () {
         var displaySessions = document.getElementById('displaySessions');
@@ -58,20 +53,22 @@ var Project = /** @class */ (function () {
         var totalTime = 0;
         var sessionsDiv = document.createElement('div');
         sessionsDiv.setAttribute('class', 'sessionsDiv');
-        AppState.getAppState().getProject().workSessions.forEach(function (workSession) {
-            totalTime += workSession.sessionTime;
-            var sessionDiv = document.createElement('div');
-            sessionDiv.setAttribute('class', 'singleSession');
-            var sessionText = document.createTextNode(formatMili(workSession.sessionTime));
-            sessionDiv.appendChild(sessionText);
-            sessionsDiv.appendChild(sessionDiv);
-        });
-        displaySessions.appendChild(sessionsDiv);
-        var totalTimeDiv = document.createElement('div');
-        totalTimeDiv.setAttribute('class', 'totalTime');
-        var totalTimeText = document.createTextNode('Total time spent: ' + formatMili(totalTime));
-        totalTimeDiv.appendChild(totalTimeText);
-        displaySessions.appendChild(totalTimeDiv);
+        if (ProjectsCollection.getProjects().getProjectsCollection().length != 0) {
+            AppState.getAppState().getProject().workSessions.forEach(function (workSession) {
+                totalTime += workSession.sessionTime;
+                var sessionDiv = document.createElement('div');
+                sessionDiv.setAttribute('class', 'singleSession');
+                var sessionText = document.createTextNode(formatMili(workSession.sessionTime));
+                sessionDiv.appendChild(sessionText);
+                sessionsDiv.appendChild(sessionDiv);
+            });
+            displaySessions.appendChild(sessionsDiv);
+            var totalTimeDiv = document.createElement('div');
+            totalTimeDiv.setAttribute('class', 'totalTime');
+            var totalTimeText = document.createTextNode('Total time spent: ' + formatMili(totalTime));
+            totalTimeDiv.appendChild(totalTimeText);
+            displaySessions.appendChild(totalTimeDiv);
+        }
     };
     return Project;
 }());

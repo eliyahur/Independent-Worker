@@ -56,7 +56,6 @@ export class ProjectsCollection {
                 this.projectsCollection.push(specificProject);
             }
         }
-        console.log(this.projectsCollection);
         localStorage.setItem('projectsCollection', JSON.stringify(this.projectsCollection));
     }
 }

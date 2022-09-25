@@ -6,7 +6,6 @@ export class RenderSelect {
     public static initOptions() {
         let selectBtn = document.getElementById('selectProject');
         selectBtn.innerHTML = null;
-        console.log(ProjectsCollection.getProjects().getProjectsCollection());
         ProjectsCollection.getProjects().getProjectsCollection().forEach((project)=>{
             let option = document.createElement('option');
             let optionText = document.createTextNode(project.projectName);
