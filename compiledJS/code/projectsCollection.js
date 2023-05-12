@@ -3,6 +3,10 @@ var ProjectsCollection = /** @class */ (function () {
         this.projectsCollection = [];
         this.projectsCollection = JSON.parse(localStorage.getItem('projectsCollection'));
     }
+    ProjectsCollection.prototype.getProjectsCollectionImport = function (importedJSON) {
+        this.projectsCollection = JSON.parse(importedJSON);
+        console.log('foreign object gor injected.');
+    };
     ProjectsCollection.prototype.getProjectsCollection = function () {
         if (!this.projectsCollection) {
             this.projectsCollection = [];
@@ -20,6 +24,15 @@ var ProjectsCollection = /** @class */ (function () {
     };
     ProjectsCollection.prototype.getProject = function (id) {
         return this.findProject(id);
+    };
+    ProjectsCollection.prototype.deleteProject = function (id) {
+        var projectsCollection = this.getProjectsCollection();
+        projectsCollection.forEach(function (project, index) {
+            if (project.projectId == id) {
+                projectsCollection.splice(index, 1);
+            }
+        });
+        this.saveProjects();
     };
     ProjectsCollection.prototype.findProject = function (id) {
         var chosenProject;

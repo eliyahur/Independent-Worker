@@ -6,6 +6,11 @@ export class ProjectsCollection {
     private constructor() {
         this.projectsCollection = JSON.parse(localStorage.getItem('projectsCollection'));
     }
+    public getProjectsCollectionImport(importedJSON) {
+        this.projectsCollection = JSON.parse(importedJSON);
+        console.log('foreign object gor injected.');
+        
+    }
     public getProjectsCollection() {
         if(!this.projectsCollection){
             this.projectsCollection = [];
@@ -22,6 +27,15 @@ export class ProjectsCollection {
     }
     public getProject(id:number) {
         return this.findProject(id);
+    }
+    public deleteProject(id:number) {
+        let projectsCollection = this.getProjectsCollection();
+        projectsCollection.forEach((project, index)=>{
+            if(project.projectId == id) {
+                projectsCollection.splice(index,1);
+            }
+        });
+        this.saveProjects();
     }
     private findProject(id:number):ProjectOutline | any {
         let chosenProject:ProjectOutline;

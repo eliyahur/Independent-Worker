@@ -21,15 +21,37 @@ var RenderSelect = /** @class */ (function () {
             Project.getProjectOptions().displaySessions();
         }
     };
-    RenderSelect.resetButton = function () {
-        var _this = this;
+    RenderSelect.deleteProject = function () {
         var resetButton = document.getElementById('resetButton');
         resetButton.addEventListener('click', function () {
-            localStorage.setItem('projectsCollection', null);
-            AppState.getAppState().setProject({ projectId: 0, projectName: '', workSessions: [] });
-            ProjectsCollection.getProjects().projectsCollection = [];
-            Project.getProjectOptions().displaySessions();
-            _this.initOptions();
+            var projectId = AppState.getAppState().getProject().projectId;
+            ProjectsCollection.getProjects().deleteProject(projectId);
+            RenderSelect.initOptions();
+            RenderSelect.setDefaultOption();
+        });
+    };
+    RenderSelect.setMenu = function () {
+        var menuBtn = document.getElementById('menu');
+        var hiddenMenu = document.getElementById('hiddenMenu');
+        menuBtn.addEventListener('mouseover', function () {
+            hiddenMenu.style.display = 'block';
+        });
+        menuBtn.addEventListener('mouseleave', function () {
+            hiddenMenu.style.display = 'none';
+        });
+        hiddenMenu.addEventListener('mouseover', function () {
+            hiddenMenu.style.display = 'block';
+        });
+        hiddenMenu.addEventListener('mouseleave', function () {
+            hiddenMenu.style.display = 'none';
+        });
+        var importBtn = document.getElementById('import');
+        importBtn.addEventListener('click', function () {
+            alert('s');
+        });
+        var exportBTN = document.getElementById('export');
+        exportBTN.addEventListener('click', function () {
+            localStorage.getItem('projectsCollection');
         });
     };
     return RenderSelect;

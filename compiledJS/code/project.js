@@ -48,6 +48,7 @@ var Project = /** @class */ (function () {
         RenderSelect.initOptions();
     };
     Project.prototype.displaySessions = function () {
+        var _this = this;
         var displaySessions = document.getElementById('displaySessions');
         displaySessions.innerHTML = '';
         var totalTime = 0;
@@ -59,10 +60,34 @@ var Project = /** @class */ (function () {
                 var sessionDiv = document.createElement('div');
                 sessionDiv.setAttribute('class', 'singleSession');
                 var sessionText = document.createTextNode(formatMili(workSession.sessionTime));
+                var deleteBtn = document.createElement('button');
+                deleteBtn.addEventListener('click', function () {
+                    AppState.getAppState().getProject().workSessions.splice(AppState.getAppState().getProject().workSessions.indexOf(workSession), 1);
+                    ProjectsCollection.getProjects().saveProjects(AppState.getAppState().getProject());
+                    _this.displaySessions();
+                });
+                deleteBtn.setAttribute('class', 'deleteBtn');
+                deleteBtn.appendChild(document.createTextNode('X'));
+                sessionDiv.appendChild(deleteBtn);
                 sessionDiv.appendChild(sessionText);
                 sessionsDiv.appendChild(sessionDiv);
             });
             displaySessions.appendChild(sessionsDiv);
+            displaySessions.appendChild(document.createElement('br'));
+            var inputCustomTime_1 = document.createElement('input');
+            inputCustomTime_1.setAttribute('type', 'number');
+            inputCustomTime_1.setAttribute('id', 'customTime');
+            inputCustomTime_1.setAttribute('placeholder', 'Enter custom time in minutes');
+            displaySessions.appendChild(inputCustomTime_1);
+            var addCustomTimeBtn = document.createElement('button');
+            addCustomTimeBtn.setAttribute('id', 'addCustomTimeBtn');
+            addCustomTimeBtn.appendChild(document.createTextNode('Add custom time'));
+            addCustomTimeBtn.addEventListener('click', function () {
+                var customTime = Number(inputCustomTime_1.value) * 60000;
+                var sessionData = { sessionTime: customTime };
+                _this.setWorkSession(sessionData);
+            });
+            displaySessions.appendChild(addCustomTimeBtn);
             var totalTimeDiv = document.createElement('div');
             totalTimeDiv.setAttribute('class', 'totalTime');
             var totalTimeText = document.createTextNode('Total time spent: ' + formatMili(totalTime));

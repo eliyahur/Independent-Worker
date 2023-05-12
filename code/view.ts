@@ -20,14 +20,37 @@ export class RenderSelect {
             Project.getProjectOptions().displaySessions();
         }
     }
-    public static resetButton() {
+    public static deleteProject() {
         let resetButton = document.getElementById('resetButton');
         resetButton.addEventListener('click',()=>{
-            localStorage.setItem('projectsCollection', null);
-            AppState.getAppState().setProject({projectId: 0, projectName: '', workSessions: []});
-            ProjectsCollection.getProjects().projectsCollection = [];
-            Project.getProjectOptions().displaySessions();
-            this.initOptions();
+            let projectId = AppState.getAppState().getProject().projectId;
+            ProjectsCollection.getProjects().deleteProject(projectId);
+            RenderSelect.initOptions();
+            RenderSelect.setDefaultOption();
+        });
+    }
+    public static setMenu() {
+        let menuBtn = document.getElementById('menu');
+        let hiddenMenu = document.getElementById('hiddenMenu');
+        menuBtn.addEventListener('mouseover', ()=>{
+            hiddenMenu.style.display = 'block';
+        });
+        menuBtn.addEventListener('mouseleave',()=>{
+            hiddenMenu.style.display = 'none';
+        });
+        hiddenMenu.addEventListener('mouseover',()=>{
+            hiddenMenu.style.display = 'block';
+        });
+        hiddenMenu.addEventListener('mouseleave', ()=>{
+            hiddenMenu.style.display = 'none';
+        });
+        let importBtn = document.getElementById('import');
+        importBtn.addEventListener('click',()=> {
+            alert('s');
+        });
+        let exportBTN = document.getElementById('export');
+        exportBTN.addEventListener('click',()=> {
+            localStorage.getItem('projectsCollection');
         });
     }
 }
